@@ -1,0 +1,8 @@
+__pycache__/
+
+# Flask:
+.webassets-cache
+
+# Spyder project settings
+.spyderproject
+.spyproject
