@@ -10,5 +10,5 @@ from Controllers.HelloWorld import HelloWorld
 
 api.add_resource(HelloWorld, '/')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
+app.run(debug=True)
