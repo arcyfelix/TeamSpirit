@@ -1,14 +1,17 @@
 from flask import Flask
 from flask_restful import Api
-
-app = Flask(__name__)
-api = Api(app)
-
-# Importing Controllers
-from Controllers.HelloWorld import HelloWorld
+from flask_mysqldb import MySQL
 
 
-api.add_resource(HelloWorld, '/')
+def app():
+    app = Flask(__name__)
+    api = Api(app)
 
+    # Configuration
+    from Config.database_connection import configure_connection
+    configure_connection(app)
+    mysql = MySQL(app)
+    return app, mysql, api
 
-app.run(debug=True)
+# Initialize Flask App, MySQL connector and API handler
+app, mysql, api = app()
