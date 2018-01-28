@@ -1,7 +1,5 @@
 from flask_restplus import Resource
 
-
-
 from flask import jsonify
 from app import *
 from Config.authentication import *
@@ -20,7 +18,6 @@ class Get_All_Tasks(Resource):
         return_json = {}
         for i, column in zip(column_index, columns) :
             data = [str(row[i]) for row in result]
-            print(str(i) + ':' + column)
             return_json[column] = data
         
         response = jsonify(return_json)
