@@ -4,6 +4,6 @@
     "\\Config",
     "\\Controllers"
   ],
-  "SelectedNode": "\\Controllers\\GET_AllTasks.py",
+  "SelectedNode": "\\Controllers\\GET_TaskForGivenTaskId.py",
   "PreviewInSolutionExplorer": false
 }

@@ -6,6 +6,7 @@ from os import environ
 
 # Importing Controllers
 from Controllers.GET_AllTasks import *
+from Controllers.GET_TaskForGivenTaskId import *
 
 # Run the server
 if __name__ == '__main__':
