@@ -9,7 +9,7 @@ class Get_All_Tasks(Resource):
     def get(self):
         # MySQL Cursor ~ Connection
         cur = mysql.connection.cursor()
-        cur.execute(''' SELECT * FROM TASK;''')
+        cur.execute(''' SELECT * FROM TASKS;''')
         result = cur.fetchall()
         
         columns = ['id', 'description', 'planned_date_start', 'planned_time_start']

@@ -1,28 +1,34 @@
+# Importing Flask and Flask_Restplus
 from flask_restplus import Resource
-
-from flask_restplus import reqparse
 from flask import jsonify
 
+# Importing the App and Authentication
 from app import *
 from Config.authentication import *
+
+# Importing Utils
+import sys
+sys.path.append('./Utils')
+from RequestParser import *
 
 class Get_TaskForGivenTaskId(Resource):   
     @auth.login_required
     def get(self):
-        # MySQL Cursor ~ Connection
-        parser = reqparse.RequestParser()
-        parser.add_argument('id', 
-							type = int, 
-							location = 'args', 
-							required = True,  
-							help = 'ID of the task')
-        args = parser.parse_args()
-        
-        cur = mysql.connection.cursor()
-        sql_query = ''' SELECT * FROM TASK WHERE TASK_ID = %s ;'''
+        # Defining parameters
+        parameters = ['id']
+
+        # Parsing parameters
+        requestParser = RequestParser()
+        args = requestParser.parse_parameters_from_array_all_required(parameters)
+
+        # MySQL 
+        conn = mysql.connection
+        cur = conn.cursor()
+        sql_query = ''' SELECT * FROM TASKS WHERE TASK_ID = %s ;'''
         cur.execute(sql_query, [int(args['id'])])
         result = cur.fetchall()
         
+        # Defining result JSON
         columns = ['id', 'description', 'planned_date_start', 'planned_time_start']
         column_index = [0, 1, 5, 6]
 
@@ -31,7 +37,7 @@ class Get_TaskForGivenTaskId(Resource):
             data = [str(row[i]) for row in result]
             return_json[column] = data
         
-        response = jsonify(return_json)
+        response = jsonify({'status' : 'success', 'response': return_json})
         response.status_code = 200
         return response
 
