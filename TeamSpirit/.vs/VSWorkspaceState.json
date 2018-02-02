@@ -5,6 +5,6 @@
     "\\Controllers",
     "\\Utils"
   ],
-  "SelectedNode": "\\Utils\\RequestParser.py",
+  "SelectedNode": "\\Config\\database_connection.py",
   "PreviewInSolutionExplorer": false
 }

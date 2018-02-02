@@ -5,6 +5,8 @@ from flask_mysqldb import MySQL
 
 def app():
     app = Flask(__name__)
+    app.secret_key = 'super secret key'
+    app.config['SESSION_TYPE'] = 'memcached'
     api = Api(app)
 
     # Configuration
