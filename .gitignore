@@ -13,6 +13,8 @@ _mailinglist
 .tox
 .cache/
 .idea/
+.suo
+.sqlite
 
 # Coverage reports
 htmlcov
