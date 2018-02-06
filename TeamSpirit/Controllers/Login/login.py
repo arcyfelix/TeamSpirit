@@ -25,7 +25,7 @@ class login(Resource):
 
         # Setting up session
         session['user_mail'] = user_mail
-        session['loggedIn'] = True
+        session['logged_in'] = True
 
         return jsonify(str(session))
 
