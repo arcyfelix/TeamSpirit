@@ -10,6 +10,10 @@ import sys
 sys.path.append('./Utils')
 from RequestParser import *
 
+# Import authentication
+sys.path.append('././Config')
+from authentication import *
+
 class login(Resource):
     # def post(self):
     def get(self):
@@ -23,11 +27,15 @@ class login(Resource):
         user_mail = args['user_mail']
         password = args['password']
 
-        # Setting up session
-        session['user_mail'] = user_mail
-        session['logged_in'] = True
+        # Assessment
+        if verify_password(user_mail, password):
+            # Setting up session
+            session['user_mail'] = user_mail
+            session['logged_in'] = True
 
-        return jsonify(str(session))
+            return jsonify(str(session))
+        else:
+            return jsonify('Not logged in!')
 
         
 
