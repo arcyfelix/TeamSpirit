@@ -35,7 +35,7 @@ def verify_password(user_mail, password):
     if(result is None):
         loggedIn = False
     else:
-        true_password = result(0)
+        true_password = result[0]
         password_encryptor = PasswordEncryption()
         loggedIn = password_encryptor.validate_password(password, true_password)
        
